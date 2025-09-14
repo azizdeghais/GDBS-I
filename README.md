@@ -26,3 +26,13 @@ Based on this simple implementation, we can create additional endpoints that wil
 #### PostgreSQL Database (Supabase):  
 ![Supabase SQL Editor](images/Supabase.PNG)  
 SQL commands can be executed on editor to define database or fetch data to create views.  
+##### EXAMPLE OF CREATING A TABLE:  
+Inserting this piece of code into the SQL Editor would create an empty table on our database.  
+`CREATE TABLE Participant (
+    ID INT PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    date_of_birth DATE,
+    country_of_origin VARCHAR(50)
+);`
