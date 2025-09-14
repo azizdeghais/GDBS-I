@@ -1,7 +1,7 @@
 # Grundlagen von Datenbanksystemen - Projekt
 ## 1. Introduction
 This repository contains the project documentation for the course Fundamentals of Database Systems.
-The goal of this project is to practically apply core database concepts and to develop a functional solution that demonstrates the use of different database technologies.  
+The goal of this project is to practically apply core database concepts and to develop a functional solution that demonstrates the use of a SQL Database.  
   
 ## 2. Technologies & Tools:  
 Programming language(s): Typescript/Javascript  
@@ -24,4 +24,5 @@ This means that whenever the endpoint http://localhost:3000/api/teachers is acce
 Based on this simple implementation, we can create additional endpoints that will be used in the frontend dashboard. For example, when a user clicks a button to fetch teachers, this endpoint will be called and the corresponding data will be returned
 
 #### PostgreSQL Database (Supabase):  
-![Supabase SQL Editor](images/Supabase.PNG)
+![Supabase SQL Editor](images/Supabase.PNG)  
+SQL commands can be executed on editor to define database or fetch data to create views.  
