@@ -2,13 +2,22 @@
 ## 1. Introduction
 This repository contains the project documentation for the course Fundamentals of Database Systems.
 The goal of this project is to practically apply core database concepts and to develop a functional solution that demonstrates the use of a SQL Database.  
-  
-## 2. Technologies & Tools:  
+
+## 2. Prerequisites
+`npm install npm@latest -g`  
+
+## 3. Installation  
+1. Get your free account on Supabase (Supabase_URL & Supabase_Password are required to link them to backend server.
+2. Clone the repository `git clone https://github.com/azizdeghais/GDBS-I.git`
+3. Install npm packages `npm i`
+4. Change git remote url to avoid accidental merges
+
+## 4. Technologies & Tools:  
 Programming language(s): Typescript/Javascript  
 Database management system: PostgreSQL (Supabase Cloud-Hosted Platform)    
 Tools/Frameworks: Node.js (Backend), React.js (Frontend)     
 
-## 3. Implementation:
+## 5. Implementation:
 ### Backend  
 #### Connecting to Database:
 `import { createClient } from "@supabase/supabase-js";`  
