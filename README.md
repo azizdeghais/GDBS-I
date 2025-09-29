@@ -54,56 +54,56 @@ Inserting this piece of code into the SQL Editor would create an empty table on 
     email VARCHAR(100) UNIQUE NOT NULL,
     country_of_origin VARCHAR(50) NOT NULL,
     date_of_birth DATE NOT NULL
-);
+);`
 
-CREATE TABLE Student (
+`CREATE TABLE Student (
     matriculation_number SERIAL PRIMARY KEY REFERENCES Participant(ID),
     type CHAR(8) CHECK (type IN ('Humboldt', 'Charite', 'Erasmus'))
-);
+);`
 
-CREATE TABLE HU_Staff (
+`CREATE TABLE HU_Staff (
     staff_ID SERIAL PRIMARY KEY REFERENCES Participant(ID),
     approval BOOLEAN
-);
+);`
 
-CREATE TABLE Instructor (
+`CREATE TABLE Instructor (
     ID SERIAL PRIMARY KEY,
     f_name VARCHAR(50) NOT NULL,
     l_name VARCHAR(50) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     phone INTEGER
-);
+);`
 
-CREATE TABLE AcademicTitle (
+`CREATE TABLE AcademicTitle (
     instructor_ID SERIAL REFERENCES Instructor(ID),
     title VARCHAR(50) NOT NULL,
     PRIMARY KEY (instructor_ID, title)
-);
+);`
 
-CREATE TABLE Course (
+`CREATE TABLE Course (
     ID SERIAL PRIMARY KEY,
     title VARCHAR(100) NOT NULL,
     level VARCHAR(20),
     language VARCHAR(50) NOT NULL,
     format CHAR(6) CHECK (format IN ('OnSite', 'Online', 'Hybrid'))
-);
+);`
 
-CREATE TABLE IsTaughtBy (
+`CREATE TABLE IsTaughtBy (
     course_ID SERIAL REFERENCES Course(ID),
     instructor_ID SERIAL REFERENCES Instructor(ID),
     PRIMARY KEY (course_ID, instructor_ID)
-);
+);`
 
-CREATE TABLE Payment (
+`CREATE TABLE Payment (
     ID SERIAL PRIMARY KEY,
     participant_ID SERIAL NOT NULL REFERENCES Participant(ID),
     status CHAR(10) CHECK (status IN ('Pending', 'Processing', 'Completed', 'Failed')),
     amount DECIMAL(6, 2),
     method CHAR(13) CHECK (method IN ('Cash', 'Credit Card', 'Debit Card', 'Bank Transfer')),
     date DATE NOT NULL
-);
+);`
 
-CREATE TABLE Enrollment (
+`CREATE TABLE Enrollment (
     ID SERIAL PRIMARY KEY,
     participant_ID SERIAL NOT NULL REFERENCES Participant(ID),
     course_ID SERIAL NOT NULL REFERENCES Course(ID),
@@ -111,9 +111,9 @@ CREATE TABLE Enrollment (
     status CHAR(10) CHECK (status IN ('Pending', 'Waitlist', 'Active', 'Completed', 'Cancelled')),
     date DATE NOT NULL,
     placement BOOLEAN
-);
+);`
 
-CREATE TABLE Test (
+`CREATE TABLE Test (
     ID SERIAL PRIMARY KEY,
     course_ID SERIAL NOT NULL REFERENCES Course(ID),
     title VARCHAR(100),
@@ -122,32 +122,32 @@ CREATE TABLE Test (
     passing_score INTEGER NOT NULL (passing_score >= 0),
     duration INTERVAL,
     attempt_limit INTEGER NOT NULL CHECK (attempt_limit > 0)
-);
+);`
 
-CREATE TABLE TestAttempt (
+`CREATE TABLE TestAttempt (
     test_ID SERIAL REFERENCES Test(ID),
     participant_ID SERIAL REFERENCES Participant(ID),
     attempt_number INTEGER NOT NULL CHECK (attempt_number > 0),
     score INTEGER NOT NULL,
     passed BOOLEAN,
     PRIMARY KEY (test_ID, participant_ID, attempt_number)
-);
+);`
 
-CREATE TABLE Certificate (
+`CREATE TABLE Certificate (
     course_ID SERIAL NOT NULL REFERENCES Course(ID),
     participant_ID SERIAL NOT NULL REFERENCES Participant(ID),
     issued_at DATE NOT NULL,
     PRIMARY KEY (course_ID, participant_ID)
-);
+);`
 
-CREATE TABLE Classroom (
+`CREATE TABLE Classroom (
     building_name VARCHAR(100),
     room_number CHAR(4),
     wheelchair_access BOOLEAN NOT NULL DEFAULT FALSE,
     PRIMARY KEY (building_name, room_number)
-);
+);`
 
-CREATE TABLE Schedule (
+`CREATE TABLE Schedule (
     course_ID SERIAL NOT NULL REFERENCES Course(ID),
     day_of_week SMALLINT NOT NULL CHECK (day_of_week BETWEEN 1 AND 7),
     start_time TIME,
@@ -156,65 +156,65 @@ CREATE TABLE Schedule (
     start_date DATE NOT NULL,
     end_date DATE NOT NULL CHECK (end_date >= start_date),
     PRIMARY KEY (course_ID, day_of_week, start_time)
-);
+);`
 
-CREATE TABLE CourseClassroom (
+`CREATE TABLE CourseClassroom (
     course_ID SERIAL NOT NULL REFERENCES Course(ID),
     building_name VARCHAR(100),
     room_number CHAR(4),
     PRIMARY KEY (course_ID, building_name, room_number),
     FOREIGN KEY (building_name, room_number) REFERENCES Classroom(building_name, room_number)
-);
+);`
 
-CREATE TABLE CourseOnline (
+`CREATE TABLE CourseOnline (
     course_ID SERIAL REFERENCES Course(ID),
     url VARCHAR(1000),
     platform VARCHAR(50),
     PRIMARY KEY (course_ID, url)
-);
+);`
 
-CREATE TABLE CourseMaterial (
+`CREATE TABLE CourseMaterial (
     title VARCHAR(100),
     year INTEGER,
     author VARCHAR(100),
     type VARCHAR(50) NOT NULL,
     PRIMARY KEY (title, year, author)
-);
+);`
 
-CREATE TABLE CourseHasMaterial (
+`CREATE TABLE CourseHasMaterial (
     course_ID SERIAL NOT NULL REFERENCES Course(ID),
     title VARCHAR(100),
     year INTEGER,
     author VARCHAR(100),
     PRIMARY KEY (course_ID, title, year, author),
     FOREIGN KEY (title, year, author) REFERENCES CourseMaterial(title, year, author)
-);
+);`
 
-CREATE TABLE Staff (
+`CREATE TABLE Staff (
     ID SERIAL PRIMARY KEY,
     f_name VARCHAR(50) NOT NULL,
     l_name VARCHAR(50) NOT NULL,
     phone INTEGER,
     email VARCHAR(100) UNIQUE NOT NULL
-);
+);`
 
-CREATE TABLE StaffAdmin (
+`CREATE TABLE StaffAdmin (
     admin_ID SERIAL PRIMARY KEY REFERENCES Staff(ID),
     system_privileges VARCHAR(100)
-);
+);`
 
-CREATE TABLE StaffSupport (
+`CREATE TABLE StaffSupport (
     support_ID SERIAL PRIMARY KEY REFERENCES Staff(ID),
     branch VARCHAR(100),
     location VARCHAR(100)
-);
+);`
 
-CREATE TABLE StaffSecretary (
+`CREATE TABLE StaffSecretary (
     secretary_ID SERIAL PRIMARY KEY REFERENCES Staff(ID),
     department VARCHAR(100)
-);
+);`
 
-CREATE TABLE Ticket (
+`CREATE TABLE Ticket (
     ID SERIAL PRIMARY KEY,
     title VARCHAR(100) NOT NULL,
     description VARCHAR(1000),
@@ -222,31 +222,31 @@ CREATE TABLE Ticket (
     category VARCHAR(50),
     created_at TIMESTAMP NOT NULL,
     closed_at TIMESTAMP
-);
+);`
 
-CREATE TABLE Notification (
+`CREATE TABLE Notification (
     ID SERIAL PRIMARY KEY,
     staff_ID SERIAL NOT NULL REFERENCES Staff(ID),
     title VARCHAR(100) NOT NULL,
     message VARCHAR(1000) NOT NULL,
     type VARCHAR(50),
     date TIMESTAMP NOT NULL
-);
+);`
 
-CREATE TABLE ProcessedBy (
+`CREATE TABLE ProcessedBy (
     ticket_ID SERIAL REFERENCES Ticket(ID),
     staff_ID SERIAL REFERENCES Staff(ID),
     date TIMESTAMP NOT NULL,
     PRIMARY KEY (ticket_ID, staff_ID, date)
-);
+);`
 
-CREATE TABLE SentTo (
+`CREATE TABLE SentTo (
     notification_ID SERIAL REFERENCES Notification(ID),
     participant_ID SERIAL REFERENCES Participant(ID),
     PRIMARY KEY (notification_ID, participant_ID)
-);
+);`
 
-CREATE VIEW active_enrollments AS
+`CREATE VIEW active_enrollments AS
 SELECT
     e.ID AS enrollment_ID,
     p.ID AS participant_ID,
@@ -262,7 +262,7 @@ SELECT
 FROM Enrollment AS e
 JOIN Participant AS p ON p.ID = e.participant_ID
 JOIN Course AS c ON c.ID = e.course_ID
-WHERE e.status = 'Active';
+WHERE e.status = 'Active';`
 
-CREATE INDEX idx_enrollment_participant ON Enrollment(participant_ID);
-CREATE INDEX idx_enrollment_course ON Enrollment(course_ID);`
+`CREATE INDEX idx_enrollment_participant ON Enrollment(participant_ID);`
+`CREATE INDEX idx_enrollment_course ON Enrollment(course_ID);`
