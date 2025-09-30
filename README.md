@@ -46,7 +46,7 @@ Inserting this piece of code into the SQL Editor would create an empty table on 
     country_of_origin VARCHAR(50)
 );`
 
-#### Dashboard
+#### Dashboard::  
 ![Dashboard](images/Dashboard.PNG)  
 
 ## SQL DDL STATEMENTS:
