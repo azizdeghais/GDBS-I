@@ -269,73 +269,73 @@ WHERE e.status = 'Active';`
 
 ## TEN SQL REQUESTS:
 -- Fetch a participant
-SELECT *
-FROM Participant
-WHERE ID = $1;
+`SELECT *`
+`FROM Participant`
+`WHERE ID = $1;`
 
 -- Fetch all HU_Staff without an approval
-SELECT *
-FROM Participant
-JOIN HU_Staff ON staff_ID = ID
-WHERE approval = FALSE;
+`SELECT *`
+`FROM Participant`
+`JOIN HU_Staff ON staff_ID = ID`
+`WHERE approval = FALSE;`
 
 -- Fetch all free courses
-SELECT *
-FROM Course
-JOIN Enrollment AS e ON e.course_ID = ID
-WHERE e.payment_ID IS NULL;
+`SELECT *`
+`FROM Course`
+`JOIN Enrollment AS e ON e.course_ID = ID`
+`WHERE e.payment_ID IS NULL;`
 
 -- Fetch the enrollment number of each course
-SELECT
-    course_ID,
-    course_title,
-    COUNT(participant_ID) AS enrollments
-FROM active_enrollments
-GROUP BY course_ID, course_title
-ORDER BY course_ID;
+`SELECT`
+`    course_ID,`
+`    course_title,`
+`    COUNT(participant_ID) AS enrollments`
+`FROM active_enrollments`
+`GROUP BY course_ID, course_title`
+`ORDER BY course_ID;`
 
 -- Fetch all english courses
-SELECT *
-FROM Course
-WHERE language = 'English'
+`SELECT *`
+`FROM Course`
+`WHERE language = 'English'`
 
 -- Fetch all pending payments
-SELECT *
-FROM Payment
-WHERE status = 'Pending'
+`SELECT *`
+`FROM Payment`
+`WHERE status = 'Pending'`
 
 -- Fetch 5 most recently opened tickets
-SELECT *
-FROM Ticket
-WHERE closed_at IS NULL
-ORDER BY created_at DESC
-LIMIT 5;
+SELECT *`
+`FROM Ticket`
+`WHERE closed_at IS NULL`
+`ORDER BY created_at DESC`
+`LIMIT 5;`
 
 -- Fetch hybrid courses
-SELECT *
-FROM Course
-WHERE format = 'Hybrid'
+`SELECT *`
+`FROM Course`
+`WHERE format = 'Hybrid'`
 
 -- Fetch all C1-german course instructors
-SELECT DISTINCT
-    i.ID,
-    i.f_name,
-    i.l_name,
-    i.email
-FROM Course AS c
-JOIN IsTaughtBy AS t ON t.course_ID = c.ID
-JOIN Instructor AS i ON i.ID = t.instructor_ID
-WHERE c.language = 'German' AND c.level = 'C1';
+`SELECT DISTINCT`
+`    i.ID,`
+`    i.f_name,`
+`   i.l_name,`
+`   i.email`
+`FROM Course AS c`
+`JOIN IsTaughtBy AS t ON t.course_ID = c.ID`
+`JOIN Instructor AS i ON i.ID = t.instructor_ID`
+`WHERE c.language = 'German' AND c.level = 'C1';`
 
 -- Fetch all participants that achieved max points in the final exam
-SELECT 
-    ID,
-    f_name,
-    l_name
-FROM Participant
-WHERE ID IN (
-    SELECT participant_ID
-    FROM TestAttempt AS ta
-    JOIN Test AS t ON t.ID = ta.test_ID
-    WHERE t.type = 'final' AND ta.score = t.max_score
-);
+SELECT `
+    ID,`
+    f_name,`
+    l_name`
+FROM Participant`
+WHERE ID IN (`
+`    SELECT participant_ID`
+`    FROM TestAttempt AS ta`
+`    JOIN Test AS t ON t.ID = ta.test_ID`
+`    WHERE t.type = 'final' AND ta.score = t.max_score`
+`);`
