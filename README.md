@@ -270,7 +270,7 @@ WHERE e.status = 'Active';`
 `CREATE INDEX idx_enrollment_participant ON Enrollment(participant_ID);`
 `CREATE INDEX idx_enrollment_course ON Enrollment(course_ID);`
 
-## TEN SQL REQUESTS:
+## TEN SQL REQUESTS (Including Aggregation,Join etc..)
 -- Fetch a participant
 `SELECT *`
 `FROM Participant`
@@ -342,3 +342,7 @@ WHERE ID IN (`
 `    JOIN Test AS t ON t.ID = ta.test_ID`
 `    WHERE t.type = 'final' AND ta.score = t.max_score`
 `);`
+## Indexes:
+`CREATE INDEX idx_enrollment_participant ON Enrollment(participant_ID);`
+`CREATE INDEX idx_enrollment_course ON Enrollment(course_ID);`
+
