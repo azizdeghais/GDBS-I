@@ -46,7 +46,7 @@ Inserting this piece of code into the SQL Editor would create an empty table on 
     country_of_origin VARCHAR(50)
 );`
 
-#### SQL DDL STATEMENTS:
+## SQL DDL STATEMENTS:
 `CREATE TABLE Participant (
     ID SERIAL PRIMARY KEY,
     f_name VARCHAR(50) NOT NULL,
@@ -267,7 +267,7 @@ WHERE e.status = 'Active';`
 `CREATE INDEX idx_enrollment_participant ON Enrollment(participant_ID);`
 `CREATE INDEX idx_enrollment_course ON Enrollment(course_ID);`
 
-#### TEN SQL REQUESTS:
+## TEN SQL REQUESTS:
 -- Fetch a participant
 SELECT *
 FROM Participant
