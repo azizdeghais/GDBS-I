@@ -32,7 +32,11 @@ Tools/Frameworks: Node.js (Backend), React.js (Frontend)
 This means that whenever the endpoint http://localhost:3000/api/teachers is accessed on your machine, the table named teachers will be fetched from Supabase.  
 Based on this simple implementation, we can create additional endpoints that will be used in the frontend dashboard. For example, when a user clicks a button to fetch teachers, this endpoint will be called and the corresponding data will be returned
 
-#### PostgreSQL Database (Supabase):  
+### Frontend
+![Frontend Code](images/Frontend.PNG)  
+In this project, we fetch data from our Supabase database through views that we created. The backend exposes these views via API endpoints, and the frontend retrieves the data by calling those endpoints. Depending on which button the user clicks, the corresponding data is fetched and displayed on the screen.  
+
+#### PostgreSQL Database (Supabase):    
 ![Supabase SQL Editor](images/Supabase.PNG)  
 SQL commands can be executed on editor to define database or fetch data to create views.  
 ##### EXAMPLE OF CREATING A TABLE:  
