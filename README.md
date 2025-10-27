@@ -275,24 +275,25 @@ WHERE e.status = 'Active';`
 `CREATE INDEX idx_enrollment_course ON Enrollment(course_ID);`
 
 ## TEN SQL REQUESTS (Including Aggregation,Join etc..)
--- Fetch a participant
+-- Fetch the first participant that joined.
 `SELECT *`
 `FROM Participant`
 `WHERE ID = $1;`
 
--- Fetch all HU_Staff without an approval
+
+-- Fetch all HU_Staff without an approval as "FALSE"
 `SELECT *`
 `FROM Participant`
 `JOIN HU_Staff ON staff_ID = ID`
 `WHERE approval = FALSE;`
 
--- Fetch all free courses
+-- Fetch all free courses where participants should not pay and is free of cost.
 `SELECT *`
 `FROM Course`
 `JOIN Enrollment AS e ON e.course_ID = ID`
 `WHERE e.payment_ID IS NULL;`
 
--- Fetch the enrollment number of each course
+-- Fetch the enrollment number of each course being offered.
 `SELECT`
 `    course_ID,`
 `    course_title,`
@@ -306,7 +307,7 @@ WHERE e.status = 'Active';`
 `FROM Course`
 `WHERE language = 'English'`
 
--- Fetch all pending payments
+-- To know which payments are still pending (either bank issue or participant still did not pay)
 `SELECT *`
 `FROM Payment`
 `WHERE status = 'Pending'`
