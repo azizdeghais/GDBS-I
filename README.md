@@ -351,3 +351,49 @@ WHERE ID IN (`
 `CREATE INDEX idx_enrollment_participant ON Enrollment(participant_ID);`
 `CREATE INDEX idx_enrollment_course ON Enrollment(course_ID);`
 
+# Functional Requirements:  
+## Course Management:  
+Desciption:  
+The platform enables administrators to create and manage courses tailored to various languages and proficiency levels. When creating a course, admins input detailed information including:
+Spanish, Deutsch als Fremdsprache, French, Italian, Russian, Turkish, English, Arabic …
+Course level (A1,A2,B1,B2,C1,C2)
+Description of the course and learning objectives
+Prerequisites for participation:  
+Assessment Test Passed
+Payment accepted
+Maximum capacity (e.g 10-20 members) - available spots are left.
+Type of course (normal, intensive…)
+![USE_CASE_I](images/USE_CASE_I.PNG) 
+## USER MANAGEMENT  
+System also supports a robust user management module with:
+Registration and login capabilities for all users
+Role-based access control, ensuring users only see features relevant to their roles (Student, Instructor, Admin)
+           For example, admins can manage users and courses, instructors can update course materials, and students can view, enroll in courses
+User profiles can be personalized with: profile photo, biography, contact details or social media links
+### Content Delivery  
+To support remote learning, the system integrates with live virtual classroom tools (e.g. Zoom). Instructors can schedule and host live sessions directly through the platform. In addition, the system offers:
+Interactive language exercises and quizzes accessible via the website
+Downloadable learning resources such as PDFs, audio files, recorded sessions which help reinforce language learning outside of class
+## Assessment and Certification  
+To track progress the platform includes:
+Regular language tests which may be automatically or manually graded.
+Quizzes and exercises after course modules
+Upon successful completion, students receive certificates, which can be downloaded or shared
+These assessments help maintain quality control and motivate students with tangible achievements.
+## Payment 
+  -Secure payment gateway integration (on website)
+  -Payment options include both in-person (contact) or online
+  -The full course fee must be paid within 3 days after the online booking. If the payment is not received within this period, registration will be canceled!
+  -After successfully booking the course, students will receive an email with the bank details to transfer the payment.
+![USE_CASE_II](images/USE_CASE_II.PNG)
+## Enrollment 
+Title: Enrollment in a course
+Goal: A participant registers for a language course
+Main actors: Students, Staff of Humboldt University, Support
+Prerequisites:
+The participant is either a student/staff member of Humboldt University, Charité-student or Erasmus student. You need a matriculation number and HU/Charité email address. Erasmus students may use their private email until they receive an HU email address. Staff may participate in language courses only for official work-related reasons and with prior approval from their supervisor and the staff development office. Enrollment is available only online.
+
+
+
+
+
