@@ -358,11 +358,11 @@ The platform enables administrators to create and manage courses tailored to var
 Spanish, Deutsch als Fremdsprache, French, Italian, Russian, Turkish, English, Arabic …
 Course level (A1,A2,B1,B2,C1,C2)
 Description of the course and learning objectives
-Prerequisites for participation:  
-Assessment Test Passed
-Payment accepted
-Maximum capacity (e.g 10-20 members) - available spots are left.
-Type of course (normal, intensive…)
+Prerequisites for participation:    
+Assessment Test Passed  
+Payment accepted  
+Maximum capacity (e.g 10-20 members) - available spots are left.  
+Type of course (normal, intensive…)  
 ![USE_CASE_I](images/USE_CASE_I.PNG) 
 ## USER MANAGEMENT  
 System also supports a robust user management module with:
