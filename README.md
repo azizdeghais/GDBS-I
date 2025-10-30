@@ -112,8 +112,6 @@ Inserting this piece of code into the SQL Editor would create an empty table on 
 
 `CREATE TABLE Enrollment (
     ID SERIAL PRIMARY KEY,
-    participant_ID SERIAL NOT NULL REFERENCES Participant(ID),
-    course_ID SERIAL NOT NULL REFERENCES Course(ID),
     payment_ID SERIAL REFERENCES Payment(ID),
     status CHAR(10) CHECK (status IN ('Pending', 'Waitlist', 'Active', 'Completed', 'Cancelled')),
     date DATE NOT NULL,
@@ -253,29 +251,34 @@ Inserting this piece of code into the SQL Editor would create an empty table on 
     PRIMARY KEY (notification_ID, participant_ID)
 );`
 
+`CREATE TABLE EnrollsIn (
+    participant_ID SERIAL REFERENCES Participant(ID),
+    enrollment_ID SERIAL REFERENCES Enrollment(ID),
+    course_ID SERIAL NOT NULL REFERENCES Course(ID),
+    PRIMARY KEY (participant_ID, enrollment_ID)
+);`
+
 `CREATE VIEW active_enrollments AS
 SELECT
     e.ID AS enrollment_ID,
-    p.ID AS participant_ID,
+    ei.participant_ID,
     p.f_name,
     p.l_name,
     p.email,
-    c.ID AS course_ID,
+    ei.course_ID,
     c.title AS course_title,
     c.level,
     c.language,
     e.date AS enrolled_at,
     e.placement
 FROM Enrollment AS e
-JOIN Participant AS p ON p.ID = e.participant_ID
-JOIN Course AS c ON c.ID = e.course_ID
+JOIN EnrollsIn AS ei ON e.ID = ei.enrollment_ID
+JOIN Participant AS p ON ei.participant_ID = p.ID
+JOIN Course AS c ON ei.course_ID = c.ID
 WHERE e.status = 'Active';`
 
-`CREATE INDEX idx_enrollment_participant ON Enrollment(participant_ID);`
-`CREATE INDEX idx_enrollment_course ON Enrollment(course_ID);`
-
 ## TEN SQL REQUESTS (Including Aggregation,Join etc..)
--- Fetch the first participant that joined.
+-- Fetch a participant (parameter).
 `SELECT *`
 `FROM Participant`
 `WHERE ID = $1;`
@@ -290,7 +293,8 @@ WHERE e.status = 'Active';`
 -- Fetch all free courses where participants should not pay and is free of cost.
 `SELECT *`
 `FROM Course`
-`JOIN Enrollment AS e ON e.course_ID = ID`
+`LEFT JOIN EnrollsIn AS ei ON ID = ei.course_ID`
+`LEFT JOIN Enrollment AS e ON ei.enrollment_ID = e.ID`
 `WHERE e.payment_ID IS NULL;`
 
 -- Fetch the enrollment number of each course being offered.
@@ -348,8 +352,9 @@ WHERE ID IN (`
 `    WHERE t.type = 'final' AND ta.score = t.max_score`
 `);`
 ## Indexes:
-`CREATE INDEX idx_enrollment_participant ON Enrollment(participant_ID);`
-`CREATE INDEX idx_enrollment_course ON Enrollment(course_ID);`
+`CREATE INDEX idx_enrollment_status ON Enrollment(status);`
+`CREATE INDEX idx_payment_status ON Payment(status);`
+`CREATE INDEX idx_language_level ON Course(language, level);`
 
 # Functional Requirements:  
 ## Course Management:  
