@@ -2,6 +2,7 @@
 ## 1. Introduction
 This repository contains the project documentation for the course Fundamentals of Database Systems.
 The goal of this project is to practically apply core database concepts and to develop a functional solution that demonstrates the use of a SQL Database.  
+![View](images/View.PNG)  
 
 ## 2. Prerequisites
 `npm install npm@latest -g`  
