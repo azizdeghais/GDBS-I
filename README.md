@@ -36,7 +36,10 @@ Based on this simple implementation, we can create additional endpoints that wil
 ![Frontend Code](images/Frontend.PNG)  
 In this project, we fetch data from our Supabase database through views that we created. The backend exposes these views via API endpoints, and the frontend retrieves the data by calling those endpoints. Depending on which button the user clicks, the corresponding data is fetched and displayed on the screen.  
 
-#### PostgreSQL Database (Supabase):    
+#### PostgreSQL Database (Supabase):  
+Supabase is an open-source backend-as-a-service (BaaS) that helps you build web and mobile applications quickly.  
+A fully managed PostgreSQL database that you can query with SQL. It supports advanced features like relations, JSON fields, triggers, and stored procedures.
+Supabase automatically generates RESTful APIs, which we integrated with our backend services. The frontend communicates with the backend through these APIs to handle user interactions, such as button clicks.  
 ![Supabase SQL Editor](images/Supabase.PNG)  
 SQL commands can be executed on editor to define database or fetch data to create views.  
 ##### EXAMPLE OF CREATING A TABLE:  
