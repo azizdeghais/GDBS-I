@@ -474,7 +474,9 @@ TakesPlaceIn (course_ID, building_name, room_number)
 
 This relational model is in BCNF.  
 
+https://docs.google.com/document/d/1ZFjIs53nsXS6YKKSyIerzbpJXxiOpPb4Zk7XRa9Ax2E/edit?usp=sharing
 
+Link for ERM Photo and PART 1 OF PROJECT.
 ### Major Fixes:  
 SQL request updated: Changed from a fixed ID of 1 to a dynamic queried ID (e.g., 2, 3, 4).
 
