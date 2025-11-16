@@ -404,7 +404,9 @@ Title: Enrollment in a course
 Goal: A participant registers for a language course
 Main actors: Students, Staff of Humboldt University, Support
 Prerequisites:
-The participant is either a student/staff member of Humboldt University, Charité-student or Erasmus student. You need a matriculation number and HU/Charité email address. Erasmus students may use their private email until they receive an HU email address. Staff may participate in language courses only for official work-related reasons and with prior approval from their supervisor and the staff development office. Enrollment is available only online.
+The participant is either a student/staff member of Humboldt University, Charité-student or Erasmus student. You need a matriculation number and HU/Charité email address. Erasmus students may use their private email until they receive an HU email address. Staff may participate in language courses only for official work-related reasons and with prior approval from their supervisor and the staff development office. Enrollment is available only online.  
+![USE_CASE_III](images/USE_CASE_III.PNG)
+
 
 
 ### Major Fixes:  
